@@ -14,7 +14,7 @@ function getComputerChoice() {
             return 'scissors'
             break;
     }
-};
+}
 
 function getPlayerSelection() {
     const userChoice = prompt("Rock, paper, or scissors?");
@@ -22,21 +22,38 @@ function getPlayerSelection() {
     return userChoice;
 }
 
-const computerChoice = getComputerChoice();
-const playerChoice = getPlayerSelection();
+let playerPoints = 0;
+let computerPoints = 0;
 
 function playGame(computerChoice, playerChoice) {
     if (computerChoice === 'rock' && playerChoice === 'paper') {
-       return console.log(`Paper covers rock. You win!`);
+        playerPoints++;
+       return console.log(`Paper covers rock. You win!
+       Current score is PC: ${computerPoints}, human: ${playerPoints}`);
     } else if (computerChoice === 'paper' && playerChoice === 'scissors') {
-        return console.log(`Scissors cut paper. You win!`);
+        playerPoints++;
+        return console.log(`Scissors cut paper. You win!
+        Current score is PC: ${computerPoints}, human: ${playerPoints}`);
     } else if (computerChoice === 'scissors' && playerChoice === 'rock') {
-        return console.log(`Rock beats scissors. You win!`);
+        playerPoints++;
+        return console.log(`Rock beats scissors. You win!
+        Current score is PC: ${computerPoints}, human: ${playerPoints}`);
     } else if (computerChoice === playerChoice) {
-        return console.log(`It's a tie!`);
+        return console.log(`It's a tie!
+        Current score is PC: ${computerPoints}, human: ${playerPoints}`);
     } else {
-        return console.log(`${computerChoice} beats ${playerChoice}. You lose.`);
+        computerPoints++;
+        return console.log(`${computerChoice} beats ${playerChoice}. You lose.
+        Current score is PC: ${computerPoints}, human: ${playerPoints}
+        `);
     }
     }
 
-playGame(computerChoice, playerChoice);
+function game() {
+    for (let i = 1; i < 6; i++) {
+        console.log(`=== ROUND ${i} ===`)
+        playGame(getComputerChoice().toLowerCase(), getPlayerSelection().toLowerCase());
+    } 
+}
+
+game();
